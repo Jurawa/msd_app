@@ -1,0 +1,41 @@
+%h1 Listing operation_records
+
+%table
+  %thead
+    %tr
+      %th Patient
+      %th Primary surgeon
+      %th Operation date
+      %th Pre op diagnosis
+      %th Post op diagnosis
+      %th Procedures
+      %th Additional surgeons
+      %th Anesthesiologist
+      %th Case type
+      %th Reoperation
+      %th Duration
+      %th
+      %th
+      %th
+
+  %tbody
+    - @operation_records.each do |operation_record|
+      %tr
+        %td= operation_record.patient
+        %td= operation_record.primary_surgeon
+        %td= operation_record.operation_date
+        %td= operation_record.pre_op_diagnosis
+        %td= operation_record.post_op_diagnosis
+        %td= operation_record.procedures
+        %td= operation_record.additional_surgeons
+        %td= operation_record.anesthesiologist
+        %td= operation_record.case_type
+        %td= operation_record.reoperation
+        %td= operation_record.duration
+        %td= link_to 'Show', operation_record
+        %td= link_to 'Edit', edit_operation_record_path(operation_record)
+        %td= link_to 'Destroy', operation_record, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Operation record', new_operation_record_path

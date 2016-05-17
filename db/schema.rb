@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517050132) do
+ActiveRecord::Schema.define(version: 20160517081717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,30 @@ ActiveRecord::Schema.define(version: 20160517050132) do
     t.boolean  "resident"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "operation_records", force: :cascade do |t|
+    t.integer  "patient_id"
+    t.integer  "primary_surgeon_id"
+    t.integer  "anesthesiologist_id"
+    t.date     "operation_date"
+    t.string   "pre_op_diagnosis"
+    t.string   "post_op_diagnosis"
+    t.string   "procedures",                       array: true
+    t.string   "case_type"
+    t.boolean  "reoperation"
+    t.integer  "duration"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "operation_records", ["anesthesiologist_id"], name: "index_operation_records_on_anesthesiologist_id", using: :btree
+  add_index "operation_records", ["patient_id"], name: "index_operation_records_on_patient_id", using: :btree
+  add_index "operation_records", ["primary_surgeon_id"], name: "index_operation_records_on_primary_surgeon_id", using: :btree
+
+  create_table "operation_records_additional_surgeons", id: false, force: :cascade do |t|
+    t.integer "operation_record_id"
+    t.integer "doctor_id"
   end
 
   create_table "patients", force: :cascade do |t|

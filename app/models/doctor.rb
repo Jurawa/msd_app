@@ -22,4 +22,10 @@ class Doctor < ActiveRecord::Base
   validates :firm, inclusion: { in: Firms }
   validates :department, inclusion: { in: Departments }
   validates :resident, inclusion: { in: [true, false] }
+  
+  has_many :operation_records
+  
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

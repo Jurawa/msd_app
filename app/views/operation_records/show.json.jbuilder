@@ -1,0 +1,1 @@
+json.extract! @operation_record, :id, :patient_id, :primary_surgeon_id, :operation_date, :pre_op_diagnosis, :post_op_diagnosis, :procedures, :additional_surgeons, :anesthesiologist_id, :case_type, :reoperation, :duration, :created_at, :updated_at

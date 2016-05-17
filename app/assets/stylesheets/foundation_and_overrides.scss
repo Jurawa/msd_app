@@ -56,3 +56,24 @@
     padding: 1.2rem;
   }
 }
+
+.date-select {
+  select {
+    float: left;
+    width: 30%;
+    margin-right: 5%;
+  }
+  select:first-of-type{
+    width: 40%;
+  }
+  select:nth-of-type(2){
+    width: 20%;
+  }
+  select:last-of-type{
+    margin-right: 0;
+  }
+}
+
+select:required:invalid {
+  color: #999;
+}

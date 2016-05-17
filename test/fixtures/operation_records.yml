@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  patient_id: 
+  primary_surgeon_id: 
+  operation_date: 2016-05-17
+  pre_op_diagnosis: MyString
+  post_op_diagnosis: MyString
+  procedures: MyString
+  additional_surgeons: MyString
+  anesthesiologist_id: 
+  case_type: MyString
+  reoperation: false
+  duration: 1
+
+two:
+  patient_id: 
+  primary_surgeon_id: 
+  operation_date: 2016-05-17
+  pre_op_diagnosis: MyString
+  post_op_diagnosis: MyString
+  procedures: MyString
+  additional_surgeons: MyString
+  anesthesiologist_id: 
+  case_type: MyString
+  reoperation: false
+  duration: 1
