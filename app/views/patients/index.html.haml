@@ -1,25 +1,26 @@
-%h1 Listing patients
+.row.column
+  %h1 Listing patients
 
-%table
-  %thead
-    %tr
-      %th Reg no
-      %th Birth year
-      %th Gender
-      %th
-      %th
-      %th
-
-  %tbody
-    - @patients.each do |patient|
+.row.column
+  %table.hover
+    %thead
       %tr
-        %td= patient.reg_no
-        %td= patient.birth_year
-        %td= patient.gender
-        %td= link_to 'Show', patient
-        %td= link_to 'Edit', edit_patient_path(patient)
-        %td= link_to 'Destroy', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th Reg no
+        %th Birth year
+        %th Gender
+        %th
+        %th
+        %th
+  
+    %tbody
+      - @patients.each do |patient|
+        %tr
+          %td= patient.reg_no
+          %td= patient.birth_year
+          %td= patient.gender
+          %td= link_to 'Show', patient
+          %td= link_to 'Edit', edit_patient_path(patient)
+          %td= link_to 'Destroy', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to 'New Patient', new_patient_path
+.row.column
+  = link_to 'New Patient', new_patient_path, class: 'button'

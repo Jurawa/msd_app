@@ -8,9 +8,22 @@
     %title= content_for?(:title) ? yield(:title) : "MsdApp"
 
     = stylesheet_link_tag "application"
+    = stylesheet_link_tag "https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css"
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
 
   %body
-
-    = yield
+    .off-canvas-wrapper
+      .off-canvas-wrapper-inner{ 'data-off-canvas-wrapper' => true }
+        = render 'layouts/navigation'        
+        
+        .off-canvas-content{ 'data-off-canvas-content' => true }
+          .title-bar
+            .title-bar-left.hide-for-large
+              %button.menu-icon{"data-open" => "leftMenu", :type => "button"}
+              %span.title-bar-title Menu
+            .text-right.large-text-center
+              = link_to root_path do
+                %strong MSD
+    
+          = yield

@@ -6,14 +6,25 @@
         - @patient.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :reg_no
-    = f.text_field :reg_no
-  .field
-    = f.label :birth_year
-    = f.text_field :birth_year
-  .field
-    = f.label :gender
-    = f.text_field :gender
-  .actions
-    = f.submit 'Save'
+  .row
+    .column.medium-4
+      = f.label :reg_no
+      = f.text_field :reg_no, required: true
+    .column.medium-4
+      = f.label :birth_year
+      = f.select :birth_year, (1900..Date.today.year).to_a.reverse, { include_blank: true }, required: true
+    .column.medium-4
+      = f.label :gender
+      = f.select :gender, Patient::Genders, { include_blank: true }, required: true
+  .row.column
+    .actions
+      = f.submit 'Save', class: 'button'
+  -#.field
+  -#  -#= f.label :reg_no
+  -#  -#= f.text_field :reg_no
+  -#.field
+  -#  = f.label :birth_year
+  -#  = f.text_field :birth_year
+  -#.field
+  -#  = f.label :gender
+  -#  = f.text_field :gender
