@@ -1,0 +1,28 @@
+= form_for @doctor do |f|
+  - if @doctor.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@doctor.errors.count, "error")} prohibited this doctor from being saved:"
+      %ul
+        - @doctor.errors.full_messages.each do |msg|
+          %li= msg
+
+  .row
+    .column.medium-6
+      = f.label :first_name
+      = f.text_field :first_name, required: true
+    .column.medium-6
+      = f.label :last_name
+      = f.text_field :last_name, required: true
+  .row
+    .column.medium-4
+      = f.label :firm
+      = f.select :firm, Doctor::Firms, { include_blank: true }, required: true
+    .column.medium-4
+      = f.label :department
+      = f.select :department, Doctor::Departments, { include_blank: true }, required: true
+    .column.medium-4
+      = f.label :resident
+      = f.select :resident, [['True', true], ['False', false]], { include_blank: true }, required: true
+  .row.column
+    .actions
+      = f.submit 'Save', class: 'button'

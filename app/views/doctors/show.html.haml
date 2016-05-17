@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @doctor.first_name
+%p
+  %b Last name:
+  = @doctor.last_name
+%p
+  %b Firm:
+  = @doctor.firm
+%p
+  %b Department:
+  = @doctor.department
+%p
+  %b Resident:
+  = @doctor.resident
+
+= link_to 'Edit', edit_doctor_path(@doctor)
+\|
+= link_to 'Back', doctors_path
