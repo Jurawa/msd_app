@@ -1,0 +1,19 @@
+= form_for @patient do |f|
+  - if @patient.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@patient.errors.count, "error")} prohibited this patient from being saved:"
+      %ul
+        - @patient.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :reg_no
+    = f.text_field :reg_no
+  .field
+    = f.label :birth_year
+    = f.text_field :birth_year
+  .field
+    = f.label :gender
+    = f.text_field :gender
+  .actions
+    = f.submit 'Save'
