@@ -33,7 +33,21 @@ class OperationRecord < ActiveRecord::Base
   belongs_to :anesthesiologist, class_name: 'Doctor'
   has_and_belongs_to_many :additional_surgeons, class_name: 'Doctor', join_table: 'operation_records_additional_surgeons'
   
+  validates :patient, :primary_surgeon, :anesthesiologist, 
+            :operation_date, :pre_op_diagnosis, :post_op_diagnosis,
+            :procedures, :case_type, :duration,
+            presence: true
+  
+  before_validation :clean_procedures
+  
   def self.op_durations
     (900...18000).step(900).to_a.map { |d| [Time.at(d).utc.to_s(:time), d] }
+  end
+  
+  
+private
+  
+  def clean_procedures
+    procedures.reject!(&:blank?) if procedures
   end
 end

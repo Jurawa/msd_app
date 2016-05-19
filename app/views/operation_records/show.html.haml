@@ -1,39 +1,40 @@
-%p#notice= notice
-
-%p
-  %b Patient:
-  = @operation_record.patient
-%p
-  %b Primary surgeon:
-  = @operation_record.primary_surgeon
-%p
-  %b Operation date:
-  = @operation_record.operation_date
-%p
-  %b Pre op diagnosis:
-  = @operation_record.pre_op_diagnosis
-%p
-  %b Post op diagnosis:
-  = @operation_record.post_op_diagnosis
-%p
-  %b Procedures:
-  = @operation_record.procedures
-%p
-  %b Additional surgeons:
-  = @operation_record.additional_surgeons
-%p
-  %b Anesthesiologist:
-  = @operation_record.anesthesiologist
-%p
-  %b Case type:
-  = @operation_record.case_type
-%p
-  %b Reoperation:
-  = @operation_record.reoperation
-%p
-  %b Duration:
-  = @operation_record.duration
-
-= link_to 'Edit', edit_operation_record_path(@operation_record)
-\|
-= link_to 'Back', operation_records_path
+.row.column
+  %p#notice= notice
+  
+  %p
+    %b Operation date:
+    = @operation_record.operation_date
+  %p
+    %b Patient:
+    = @operation_record.patient.reg_no
+  %p
+    %b Primary surgeon:
+    = @operation_record.primary_surgeon.full_name
+  %p
+    %b Anesthesiologist:
+    = @operation_record.anesthesiologist.full_name
+  %p
+    %b Additional surgeons:
+    = @operation_record.additional_surgeons.map &:full_name
+  %p
+    %b Procedures:
+    = @operation_record.procedures
+  %p
+    %b Case type:
+    = @operation_record.case_type
+  %p
+    %b Reoperation:
+    = @operation_record.reoperation
+  %p
+    %b Duration:
+    = @operation_record.duration
+  %p
+    %b Pre op diagnosis:
+    = @operation_record.pre_op_diagnosis
+  %p
+    %b Post op diagnosis:
+    = @operation_record.post_op_diagnosis
+  
+  = link_to 'Edit', edit_operation_record_path(@operation_record)
+  \|
+  = link_to 'Back', operation_records_path

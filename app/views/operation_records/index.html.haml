@@ -1,41 +1,42 @@
-%h1 Listing operation_records
+- content_for :title, 'Operation Records'
 
-%table
-  %thead
-    %tr
-      %th Patient
-      %th Primary surgeon
-      %th Operation date
-      %th Pre op diagnosis
-      %th Post op diagnosis
-      %th Procedures
-      %th Additional surgeons
-      %th Anesthesiologist
-      %th Case type
-      %th Reoperation
-      %th Duration
-      %th
-      %th
-      %th
+.row.column.expanded
+  .table-scroll
+    %table.hover
+      %thead
+        %tr
+          %th Date
+          %th Patient Reg #
+          %th Primary surgeon
+          %th Anesthesiologist
+          %th Additional surgeons
+          %th Procedures
+          %th Case type
+          %th Reoperation
+          %th Duration
+          %th Pre Op Diagnosis
+          %th Pre Op Diagnosis
+          %th
+    
+      %tbody
+        - @operation_records.each do |operation_record|
+          %tr
+            %td{ style: 'white-space:nowrap' }= operation_record.operation_date
+            %td= operation_record.patient.reg_no
+            %td= operation_record.primary_surgeon.full_name
+            %td= operation_record.anesthesiologist.full_name
+            %td.pre-line= operation_record.additional_surgeons.map(&:full_name).join("<br/>").html_safe
+            %td.pre-line= operation_record.procedures.join("<br/>").html_safe
+            %td= operation_record.case_type
+            %td= operation_record.reoperation
+            %td= operation_record.duration
+            %td= operation_record.pre_op_diagnosis.truncate(50, omission: '...')
+            %td= operation_record.post_op_diagnosis.truncate(50, omission: '...')
+            %td
+              .button-group.small{ style: 'width:180px' }
+                = link_to 'Show', operation_record, class: 'button secondary' 
+                = link_to 'Edit', edit_operation_record_path(operation_record), class: 'button success'
+                = link_to 'Destroy', operation_record, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'button alert'
 
-  %tbody
-    - @operation_records.each do |operation_record|
-      %tr
-        %td= operation_record.patient
-        %td= operation_record.primary_surgeon
-        %td= operation_record.operation_date
-        %td= operation_record.pre_op_diagnosis
-        %td= operation_record.post_op_diagnosis
-        %td= operation_record.procedures
-        %td= operation_record.additional_surgeons
-        %td= operation_record.anesthesiologist
-        %td= operation_record.case_type
-        %td= operation_record.reoperation
-        %td= operation_record.duration
-        %td= link_to 'Show', operation_record
-        %td= link_to 'Edit', edit_operation_record_path(operation_record)
-        %td= link_to 'Destroy', operation_record, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Operation record', new_operation_record_path
+.row.column.expanded
+  = link_to 'New Operation record', new_operation_record_path, class: 'button'

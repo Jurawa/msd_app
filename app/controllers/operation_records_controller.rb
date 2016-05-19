@@ -69,6 +69,12 @@ class OperationRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_record_params
-      params.require(:operation_record).permit(:patient_id, :primary_surgeon_id, :operation_date, :pre_op_diagnosis, :post_op_diagnosis, :procedures, :additional_surgeons, :anesthesiologist_id, :case_type, :reoperation, :duration)
+      params.require(:operation_record)
+          .permit(
+              :operation_date, :patient_id, :primary_surgeon_id, 
+              :anesthesiologist_id, :case_type, :reoperation, 
+              :duration, :pre_op_diagnosis, :post_op_diagnosis, 
+              { additional_surgeon_ids: [] }, { procedures: [] }
+          )
     end
 end
