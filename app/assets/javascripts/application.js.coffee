@@ -14,10 +14,19 @@
 #= require jquery_ujs
 #= require foundation
 #= require turbolinks
+#= require cocoon
 #= require_tree .
 
 ready = ->
   $(document).foundation()
+  
+  $('#patient-wrap').on 'cocoon:after-insert', ->
+    $('#patient-select').removeAttr('required').hide()
+    $('#patient-wrap a.add_fields').hide()
+    
+  $('#patient-wrap').on 'cocoon:after-remove', ->
+    $('#patient-select').attr('required', true).show()
+    $('#patient-wrap a.add_fields').show()
 
 $(document).ready ready
 $(document).on 'page:load', ready

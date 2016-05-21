@@ -1,3 +1,4 @@
+
 = form_for @operation_record do |f|
   - if @operation_record.errors.any?
     #error_explanation
@@ -13,10 +14,14 @@
         = f.date_select :operation_date, { start_year: DateTime.now.year, end_year: DateTime.now.year - 50,
                                          order: [:month, :day, :year], prompt: true }, required: true
     .column.medium-6
-      = f.label :patient_id
-      = f.select :patient_id, Patient.all.collect { |p| [p.reg_no, p.id] }, 
-                              { prompt: 'Select patient reg number'}, required: true 
-  
+      #patient-wrap.input-group
+        #patient-select
+          = f.label :patient_id
+          = f.select :patient_id, Patient.all.collect { |p| [p.reg_no, p.id] }, 
+                                  { prompt: 'Select patient reg number' }, required: true, class: 'input-group-field'
+        .input-group-button.v-align-bottom.nowrap
+          = link_to_add_association 'Add new patient', f, :patient, class: 'button'#, data: { association_insertion_node: '#patient-new' }
+        -##patient-new
   .row
     .column.medium-6
       = f.label :primary_surgeon_id
@@ -29,7 +34,7 @@
     
   .row
     .column.medium-6
-      = f.label :additional_surgeon_ids
+      = f.label :additional_surgeon_ids, 'Additional Surgeons'
       = f.select :additional_surgeon_ids, Doctor.all.collect { |d| [d.full_name, d.id] }, {}, 
                                            multiple: true, required: true
     .column.medium-6

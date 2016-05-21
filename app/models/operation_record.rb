@@ -33,11 +33,14 @@ class OperationRecord < ActiveRecord::Base
   belongs_to :anesthesiologist, class_name: 'Doctor'
   has_and_belongs_to_many :additional_surgeons, class_name: 'Doctor', join_table: 'operation_records_additional_surgeons'
   
+  accepts_nested_attributes_for :patient
+  
   validates :patient, :primary_surgeon, :anesthesiologist, 
             :operation_date, :pre_op_diagnosis, :post_op_diagnosis,
             :procedures, :case_type, :duration,
             presence: true
   
+  after_initialize :init_patient
   before_validation :clean_procedures
   
   def self.op_durations
@@ -51,6 +54,10 @@ class OperationRecord < ActiveRecord::Base
   
 private
   
+  def init_patient
+    patient ||= Patient.new
+  end
+    
   def clean_procedures
     procedures.reject!(&:blank?) if procedures
   end

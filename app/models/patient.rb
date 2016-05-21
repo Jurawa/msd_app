@@ -16,5 +16,6 @@ class Patient < ActiveRecord::Base
   
   validates :reg_no, :birth_year, :gender, presence: true
   validates :gender, inclusion: { in: Genders }
+  validates :reg_no, uniqueness: true
   
 end

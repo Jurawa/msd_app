@@ -12,6 +12,7 @@
  *
  */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
+@import url(https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css);
 @import 'foundation_and_overrides';
 
 html, body, 
@@ -92,6 +93,14 @@ select:required:invalid {
 }
 
 table th {
+  white-space: nowrap;
+}
+
+.v-align-bottom {
+  vertical-align: bottom;
+}
+
+.nowrap {
   white-space: nowrap;
 }
 
