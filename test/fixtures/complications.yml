@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  operation_record_id: 
+  description: MyString
+  wound_infection: false
+  death: false
+  preventable: false
+  death_preventable: false
+  anesthesia_related: false
+  error_type: MyString
+  error_grade: 1
+
+two:
+  operation_record_id: 
+  description: MyString
+  wound_infection: false
+  death: false
+  preventable: false
+  death_preventable: false
+  anesthesia_related: false
+  error_type: MyString
+  error_grade: 1

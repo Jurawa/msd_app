@@ -1,0 +1,47 @@
+= form_for @complication do |f|
+  - if @complication.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@complication.errors.count, "error")} prohibited this complication from being saved:"
+      %ul
+        - @complication.errors.full_messages.each do |msg|
+          %li= msg
+
+  .row.column
+    = f.label :operation_record_id
+    = f.select :operation_record_id, OperationRecord.all.collect { |op_rec| [op_rec.short_desc, op_rec.id] },
+                                     { prompt: 'Select operation record'}, required: true
+  .row.column
+    %fieldset.fieldset
+      %legend Complication issues
+      .row.column
+        = f.check_box :preventable
+        = f.label :preventable
+        = f.check_box :death
+        = f.label :death
+        = f.check_box :death_preventable
+        = f.label :death_preventable
+      .row.column
+        = f.check_box :wound_infection
+        = f.label :wound_infection
+        = f.check_box :anesthesia_related
+        = f.label :anesthesia_related
+
+  .row.column                                  
+    = f.label :description
+    = f.text_area :description, rows: 6, placeholder: 'Enter complication description', required: true
+  
+  .row
+    .column.medium-6
+      = f.label :error_type
+      = f.select :error_type, Complication::ErrorTypes,
+                              { prompt: 'Select error type'}, required: true
+    .column.medium-6
+      = f.label :error_grade
+      = f.select :error_grade, Complication::ErrorGradesWithSuffix,
+                               { prompt: 'Select error grade'}, required: true
+
+  .row.column
+    = image_tag 'complication_error_grades.png'
+  .field
+  .actions
+    = f.submit 'Save'

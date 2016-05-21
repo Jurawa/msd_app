@@ -1,0 +1,35 @@
+.row.column.expanded
+  %table
+    %thead
+      %tr
+        %th Operation record
+        %th Description
+        %th Wound infection
+        %th Death
+        %th Preventable
+        %th Death preventable
+        %th Anesthesia related
+        %th Error type
+        %th Error grade
+        %th
+        %th
+        %th
+  
+    %tbody
+      - @complications.each do |complication|
+        %tr
+          %td= complication.operation_record
+          %td= complication.description
+          %td= complication.wound_infection
+          %td= complication.death
+          %td= complication.preventable
+          %td= complication.death_preventable
+          %td= complication.anesthesia_related
+          %td= complication.error_type
+          %td= complication.error_grade
+          %td= link_to 'Show', complication
+          %td= link_to 'Edit', edit_complication_path(complication)
+          %td= link_to 'Destroy', complication, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+.row.column.expanded
+  = link_to 'New Complication', new_complication_path, class: 'button'
