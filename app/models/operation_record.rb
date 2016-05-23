@@ -26,7 +26,7 @@
 class OperationRecord < ActiveRecord::Base
   
   Procedures = %w(procedure1 procedure2 procedure3 procedure4 procedure5)
-  CaseTypes = %w(type1 type2 type3)
+  CaseTypes = %w(Emergency Elective)
   
   belongs_to :patient
   belongs_to :primary_surgeon, class_name: 'Doctor'
@@ -39,12 +39,13 @@ class OperationRecord < ActiveRecord::Base
             :operation_date, :pre_op_diagnosis, :post_op_diagnosis,
             :procedures, :case_type, :duration,
             presence: true
+  validates :case_type, inclusion: { in: CaseTypes }
   
   after_initialize :init_patient
   before_validation :clean_procedures
   
   def self.op_durations
-    (900...18000).step(900).to_a.map { |d| [Time.at(d).utc.to_s(:time), d] }
+    (900...58500).step(900).to_a.map { |d| [Time.at(d).utc.to_s(:time), d] }
   end
   
   def short_desc
