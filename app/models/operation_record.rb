@@ -48,6 +48,10 @@ class OperationRecord < ActiveRecord::Base
     (900...58500).step(900).to_a.map { |d| [Time.at(d).utc.to_s(:time), d] }
   end
   
+  def duration_in_hours_minutes
+    Time.at(duration).utc.to_s(:time)
+  end
+  
   def short_desc
     "#{operation_date} | Patient: #{patient.reg_no} | Primary surgeon: #{primary_surgeon.full_name}"
   end

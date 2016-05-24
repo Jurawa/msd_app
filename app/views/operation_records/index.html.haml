@@ -27,7 +27,7 @@
             %td.pre-line= operation_record.procedures.join("<br/>").html_safe
             %td= operation_record.case_type
             %td= operation_record.reoperation
-            %td= operation_record.duration
+            %td= operation_record.duration_in_hours_minutes
             %td= operation_record.pre_op_diagnosis.truncate(50, omission: '...')
             %td= operation_record.post_op_diagnosis.truncate(50, omission: '...')
             %td
