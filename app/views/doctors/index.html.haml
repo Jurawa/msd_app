@@ -1,27 +1,24 @@
 .row.column
-  %table.hover
-    %thead
-      %tr
-        %th First name
-        %th Last name
-        %th Firm
-        %th Department
-        %th Resident
-        %th
-        %th
-        %th
-  
-    %tbody
-      - @doctors.each do |doctor|
+  .table-scroll
+    %table.hover
+      %thead
         %tr
-          %td= doctor.first_name
-          %td= doctor.last_name
-          %td= doctor.firm
-          %td= doctor.department
-          %td= doctor.resident
-          %td= link_to 'Show', doctor
-          %td= link_to 'Edit', edit_doctor_path(doctor)
-          %td= link_to 'Destroy', doctor, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %th First name
+          %th Last name
+          %th Firm
+          %th Department
+          %th Resident
+          %th
+    
+      %tbody
+        - @doctors.each do |doctor|
+          %tr
+            %td= doctor.first_name
+            %td= doctor.last_name
+            %td= doctor.firm
+            %td= doctor.department
+            %td= doctor.resident
+            %td= index_links(doctor)
 
 .row.column
   = link_to 'New Doctor', new_doctor_path, class: 'button'

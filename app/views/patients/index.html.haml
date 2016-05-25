@@ -1,12 +1,11 @@
 .row.column
+  .table-scroll
   %table.hover
     %thead
       %tr
         %th Reg no
         %th Birth year
         %th Gender
-        %th
-        %th
         %th
   
     %tbody
@@ -15,9 +14,7 @@
           %td= patient.reg_no
           %td= patient.birth_year
           %td= patient.gender
-          %td= link_to 'Show', patient
-          %td= link_to 'Edit', edit_patient_path(patient)
-          %td= link_to 'Destroy', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td= index_links(patient)
 
 .row.column
   = link_to 'New Patient', new_patient_path, class: 'button'

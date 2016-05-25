@@ -104,6 +104,11 @@ table th {
   white-space: nowrap;
 }
 
-//td.pre-line {
-//  white-space: pre-line;
-//}
+.index-links {
+  width: 180px;
+  margin: 0.5rem;
+}
+
+.table-scroll table {
+  min-width: 100%;  
+}

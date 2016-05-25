@@ -30,11 +30,11 @@
             %td= operation_record.duration_in_hours_minutes
             %td= operation_record.pre_op_diagnosis.truncate(50, omission: '...')
             %td= operation_record.post_op_diagnosis.truncate(50, omission: '...')
-            %td
-              .button-group.small{ style: 'width:180px' }
-                = link_to 'Show', operation_record, class: 'button secondary' 
-                = link_to 'Edit', edit_operation_record_path(operation_record), class: 'button success'
-                = link_to 'Destroy', operation_record, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'button alert'
+            %td= index_links(operation_record)
+            -#.button-group.small{ style: 'width:180px' }
+            -#  = link_to 'Show', operation_record, class: 'button secondary' 
+            -#  = link_to 'Edit', edit_operation_record_path(operation_record), class: 'button success'
+            -#  = link_to 'Destroy', operation_record, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'button alert'
 
 .row.column.expanded
   = link_to 'New Operation record', new_operation_record_path, class: 'button'
