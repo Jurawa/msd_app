@@ -1,12 +1,14 @@
-.row.nested-fields
-  .column.medium-4
-    = f.label :reg_no
-    = f.text_field :reg_no, required: true
-  .column.medium-4
-    = f.label :birth_year
-    = f.select :birth_year, (1900..Date.today.year).to_a.reverse, { include_blank: true }, required: true
-  .column.medium-4
-    = f.label :gender
-    = f.select :gender, Patient::Genders, { include_blank: true }, required: true
-
-  = link_to_remove_association "Select existing patient", f
+.nested-fields
+  .row
+    .column.medium-4
+      = f.label :reg_no
+      = f.text_field :reg_no, required: true
+    .column.medium-4
+      = f.label :birth_year
+      = f.select :birth_year, (1900..Date.today.year).to_a.reverse, { include_blank: true }, required: true
+    .column.medium-4
+      = f.label :gender
+      = f.select :gender, Patient::Genders, { include_blank: true }, required: true
+  
+  .row.column
+    = link_to_remove_association "Select existing patient", f, class: 'button small float-right'

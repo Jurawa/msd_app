@@ -19,16 +19,6 @@
 
 ready = ->
   $(document).foundation()
-  
-  $('#patient-wrap').on 'cocoon:after-insert', ->
-    $('#patient-select select').removeAttr('required')
-    $('#patient-select').hide()
-    $('#patient-wrap a.add_fields').hide()
-    
-  $('#patient-wrap').on 'cocoon:after-remove', ->
-    $('#patient-select select').attr('required', true)
-    $('#patient-select').show()
-    $('#patient-wrap a.add_fields').show()
 
 $(document).ready ready
 $(document).on 'page:load', ready

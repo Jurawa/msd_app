@@ -20,8 +20,8 @@
           = f.select :patient_id, Patient.all.collect { |p| [p.reg_no, p.id] }, 
                                   { prompt: 'Select patient reg number' }, required: true, class: 'input-group-field'
         .input-group-button.v-align-bottom.nowrap
-          = link_to_add_association 'Add new patient', f, :patient, class: 'button'#, data: { association_insertion_node: '#patient-new' }
-        -##patient-new
+          = link_to_add_association 'Add new patient', f, :patient, class: 'button'
+  
   .row
     .column.medium-6
       = f.label :primary_surgeon_id
@@ -36,7 +36,7 @@
     .column.medium-6
       = f.label :additional_surgeon_ids, 'Additional Surgeons'
       = f.select :additional_surgeon_ids, Doctor.all.collect { |d| [d.full_name, d.id] }, {}, 
-                                           multiple: true, required: true
+                                           multiple: true
     .column.medium-6
       = f.label :procedures
       = f.select :procedures, OperationRecord::Procedures, {}, 
@@ -65,3 +65,22 @@
   .row.column
     .actions
       = f.submit 'Save', class: 'button'
+
+:coffeescript
+  ready = ->
+    $('#operation_record_additional_surgeon_ids').select2()
+  
+    $('#patient-wrap').on 'cocoon:after-insert', ->
+      $('#patient-select select').removeAttr('required')
+      $('#patient-select').hide()
+      $('#patient-wrap a.add_fields').hide()
+      
+    $('#patient-wrap').on 'cocoon:after-remove', ->
+      $('#patient-select select').attr('required', true)
+      $('#patient-select').show()
+      $('#patient-wrap a.add_fields').show()
+  
+  $(document).ready ready
+  $(document).on 'page:load', ready
+
+  

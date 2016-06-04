@@ -13,6 +13,7 @@
  */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
 @import url(https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css);
 @import 'foundation_and_overrides';
 
 html, body, 
@@ -43,7 +44,7 @@ html, body,
   background: #f5f5f5;
   color: #616161;
   padding: 1.3rem;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+  //box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
   
   .title-bar-title {
     font-size: 1.3rem;
@@ -52,7 +53,7 @@ html, body,
 }
 
 .title-flash-wrapper {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
@@ -111,4 +112,18 @@ table th {
 
 .table-scroll table {
   min-width: 100%;  
+}
+
+
+// Select2 related overrides 
+
+.select2 {
+  [type='search'] {
+    height: auto;
+    margin: 0;
+  }
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: none;
 }
