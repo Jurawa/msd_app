@@ -1,33 +1,34 @@
-%p#notice= notice
+.row.column
+  %p#notice= notice
 
-%p
-  %b Operation record:
-  = @complication.operation_record
-%p
-  %b Description:
-  = @complication.description
-%p
-  %b Wound infection:
-  = @complication.wound_infection
-%p
-  %b Death:
-  = @complication.death
-%p
-  %b Preventable:
-  = @complication.preventable
-%p
-  %b Death preventable:
-  = @complication.death_preventable
-%p
-  %b Anesthesia related:
-  = @complication.anesthesia_related
-%p
-  %b Error type:
-  = @complication.error_type
-%p
-  %b Error grade:
-  = @complication.error_grade
-
-= link_to 'Edit', edit_complication_path(@complication)
-\|
-= link_to 'Back', complications_path
+  %p
+    %b Operation record:
+    = @complication.operation_record
+  %p
+    %b Description:
+    = @complication.description
+  %p
+    %b Wound infection:
+    = @complication.wound_infection
+  %p
+    %b Death:
+    = @complication.death
+  %p
+    %b Preventable:
+    = @complication.preventable
+  %p
+    %b Death preventable:
+    = @complication.death_preventable
+  %p
+    %b Anesthesia related:
+    = @complication.anesthesia_related
+  %p
+    %b Error type:
+    = @complication.error_type
+  %p
+    %b Error grade:
+    = @complication.error_grade
+  
+  = link_to 'Edit', edit_complication_path(@complication)
+  \|
+  = link_to 'Back', complications_path

@@ -1,15 +1,16 @@
-%p#notice= notice
-
-%p
-  %b Reg no:
-  = @patient.reg_no
-%p
-  %b Birth year:
-  = @patient.birth_year
-%p
-  %b Gender:
-  = @patient.gender
-
-= link_to 'Edit', edit_patient_path(@patient)
-\|
-= link_to 'Back', patients_path
+.row.column
+  %p#notice= notice
+  
+  %p
+    %b Reg no:
+    = @patient.reg_no
+  %p
+    %b Birth year:
+    = @patient.birth_year
+  %p
+    %b Gender:
+    = @patient.gender
+  
+  = link_to 'Edit', edit_patient_path(@patient)
+  \|
+  = link_to 'Back', patients_path

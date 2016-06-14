@@ -4,12 +4,12 @@ one:
   first_name: MyString
   last_name: MyString
   firm: 1
-  department: MyString
+  role: MyString
   resident: false
 
 two:
   first_name: MyString
   last_name: MyString
   firm: 1
-  department: MyString
+  role: MyString
   resident: false
