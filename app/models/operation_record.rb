@@ -44,6 +44,8 @@ class OperationRecord < ActiveRecord::Base
   after_initialize :init_patient
   before_validation :clean_procedures
   
+  scope :order_by_date, -> { order('operation_date DESC') }
+  
   def self.op_durations
     (900...58500).step(900).to_a.map { |d| [Time.at(d).utc.to_s(:time), d] }
   end
