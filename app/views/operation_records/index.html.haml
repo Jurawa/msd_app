@@ -5,6 +5,8 @@
         %tr
           %th Date
           %th Patient Reg #
+          %th Patient Birth Year
+          %th Patient Gender
           %th Primary surgeon
           %th Anesthesiologist
           %th Additional surgeons
@@ -21,6 +23,8 @@
           %tr
             %td{ style: 'white-space:nowrap' }= operation_record.operation_date
             %td= operation_record.patient.reg_no
+            %td= operation_record.patient.birth_year
+            %td= operation_record.patient.gender
             %td= operation_record.primary_surgeon.full_name
             %td= operation_record.anesthesiologist.full_name
             %td.pre-line= operation_record.additional_surgeons.map(&:full_name).join("<br/>").html_safe
