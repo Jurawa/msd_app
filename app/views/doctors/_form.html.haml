@@ -19,7 +19,7 @@
       = f.select :firm, Doctor::Firms, { include_blank: true }, required: true
     .column.medium-4
       = f.label :role
-      = f.select :role, Doctor::Roles, { include_blank: true }, required: true
+      = f.select :role, Doctor::Roles.to_h.values, { include_blank: true }, required: true
     .column.medium-4
       = f.label :resident
       = f.select :resident, [['True', true], ['False', false]], { include_blank: true }, required: true

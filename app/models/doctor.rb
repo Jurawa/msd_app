@@ -15,15 +15,20 @@
 class Doctor < ActiveRecord::Base
   
   Firms = [1, 2]
-  Roles = ['Surgeon', 'Anesthesiologist', 'Anesthesia Technician']
+  Roles = OpenStruct.new surgeon: 'Surgeon', 
+                         anesthesiologist: 'Anesthesiologist', 
+                         anesthesia_technician: 'Anesthesia Technician'
   
   validates :first_name, :last_name, :firm, 
             :role, presence: true
   validates :firm, inclusion: { in: Firms }
-  validates :role, inclusion: { in: Roles }
+  validates :role, inclusion: { in: Roles.to_h.values }
   validates :resident, inclusion: { in: [true, false] }
   
   has_many :operation_records
+  
+  scope :surgeons, -> { where(role: Roles.surgeon) }
+  scope :anesthesiologists, -> { where(role: [Roles.anesthesiologist, Roles.anesthesia_technician]) }
   
   def full_name
     "#{first_name} #{last_name}"

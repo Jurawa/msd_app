@@ -25,11 +25,11 @@
   .row
     .column.medium-6
       = f.label :primary_surgeon_id
-      = f.select :primary_surgeon_id, Doctor.all.collect { |d| [d.full_name, d.id] }, 
+      = f.select :primary_surgeon_id, Doctor.surgeons.collect { |d| [d.full_name, d.id] }, 
                                       { prompt: 'Select primary surgeon' }, required: true
     .column.medium-6
       = f.label :anesthesiologist_id
-      = f.select :anesthesiologist_id, Doctor.all.collect { |d| [d.full_name, d.id] }, 
+      = f.select :anesthesiologist_id, Doctor.anesthesiologists.collect { |d| [d.full_name, d.id] }, 
                                        { prompt: 'Select anesthesiologist' }, required: true
     
   .row
