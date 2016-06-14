@@ -117,11 +117,13 @@ table th {
 
 // Select2 related overrides 
 
-.select2 {
-  [type='search'] {
-    height: auto;
-    margin: 0;
-  }
+.select2-container .select2-search--inline .select2-search__field {
+  margin: 0;
+  height: 2.4375rem;
+}
+
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+  display: block;
 }
 
 .select2-container--default .select2-selection--multiple,

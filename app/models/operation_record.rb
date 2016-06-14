@@ -37,7 +37,7 @@ class OperationRecord < ActiveRecord::Base
   
   validates :patient, :primary_surgeon, :anesthesiologist, 
             :operation_date, :pre_op_diagnosis, :post_op_diagnosis,
-            :procedures, :case_type, :duration,
+            :case_type, :duration,
             presence: true
   validates :case_type, inclusion: { in: CaseTypes }
   
