@@ -25,7 +25,6 @@
 
 class OperationRecord < ActiveRecord::Base
   
-  Procedures = %w(procedure1 procedure2 procedure3 procedure4 procedure5)
   CaseTypes = %w(Emergency Elective)
   
   belongs_to :patient
@@ -48,6 +47,10 @@ class OperationRecord < ActiveRecord::Base
   
   def self.op_durations
     (900...58500).step(900).to_a.map { |d| [Time.at(d).utc.to_s(:time), d] }
+  end
+  
+  def self.existing_procedures
+    pluck(:procedures).flatten.uniq
   end
   
   def duration_in_hours_minutes

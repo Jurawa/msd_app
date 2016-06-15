@@ -39,7 +39,7 @@
                                            multiple: true
     .column.medium-6
       = f.label :procedures
-      = f.select :procedures, OperationRecord::Procedures, {}, 
+      = f.select :procedures, OperationRecord.existing_procedures, {}, 
                               multiple: true
 
   .row
@@ -69,7 +69,7 @@
 :coffeescript
   ready = ->
     $('#operation_record_additional_surgeon_ids').select2()
-    $('#operation_record_procedures').select2()
+    $('#operation_record_procedures').select2 tags: true
   
     $('#patient-wrap').on 'cocoon:after-insert', ->
       $('#patient-select select').removeAttr('required')
