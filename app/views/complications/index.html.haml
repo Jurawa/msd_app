@@ -27,9 +27,6 @@
             %td= complication.error_type
             %td= complication.error_grade
             %td= index_links(complication)
-          -#%td= link_to 'Show', complication
-          -#%td= link_to 'Edit', edit_complication_path(complication)
-          -#%td= link_to 'Destroy', complication, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 .row.column.expanded
   = link_to 'New Complication', new_complication_path, class: 'button'
