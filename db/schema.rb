@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614015001) do
+ActiveRecord::Schema.define(version: 20160615024037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20160614015001) do
     t.integer  "primary_surgeon_id"
     t.integer  "anesthesiologist_id"
     t.date     "operation_date"
-    t.string   "pre_op_diagnosis"
-    t.string   "post_op_diagnosis"
+    t.string   "pre_op_diagnosis",                 array: true
+    t.string   "post_op_diagnosis",                array: true
     t.string   "procedures",                       array: true
     t.string   "case_type"
     t.boolean  "reoperation"

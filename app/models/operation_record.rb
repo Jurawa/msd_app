@@ -7,8 +7,8 @@
 #  primary_surgeon_id  :integer
 #  anesthesiologist_id :integer
 #  operation_date      :date
-#  pre_op_diagnosis    :string
-#  post_op_diagnosis   :string
+#  pre_op_diagnosis    :string           is an Array
+#  post_op_diagnosis   :string           is an Array
 #  procedures          :string           is an Array
 #  case_type           :string
 #  reoperation         :boolean
@@ -41,7 +41,7 @@ class OperationRecord < ActiveRecord::Base
   validates :case_type, inclusion: { in: CaseTypes }
   
   after_initialize :init_patient
-  before_validation :clean_procedures
+  before_validation :clean_array_attrs
   
   scope :order_by_date, -> { order('operation_date DESC') }
   
@@ -50,7 +50,11 @@ class OperationRecord < ActiveRecord::Base
   end
   
   def self.existing_procedures
-    pluck(:procedures).flatten.uniq
+    pluck(:procedures).flatten.compact.uniq
+  end
+  
+  def self.existing_diagnoses
+    pluck(:pre_op_diagnosis, :post_op_diagnosis).flatten.compact.uniq
   end
   
   def duration_in_hours_minutes
@@ -68,7 +72,9 @@ private
     patient ||= Patient.new
   end
     
-  def clean_procedures
-    procedures.reject!(&:blank?) if procedures
+  def clean_array_attrs
+    [:procedures, :pre_op_diagnosis, :post_op_diagnosis].each do |array_attr|
+      send(array_attr).reject!(&:blank?) if send(array_attr)
+    end
   end
 end

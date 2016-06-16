@@ -57,10 +57,12 @@
   .row
     .column.medium-6
       = f.label :pre_op_diagnosis
-      = f.text_area :pre_op_diagnosis, rows: 6, placeholder: 'Enter pre operation diagnosis', required: true
+      = f.select :pre_op_diagnosis, OperationRecord.existing_diagnoses, {}, 
+                                    multiple: true
     .column.medium-6
       = f.label :post_op_diagnosis
-      = f.text_area :post_op_diagnosis, rows: 6, placeholder: 'Enter post operation diagnosis', required: true
+      = f.select :post_op_diagnosis, OperationRecord.existing_diagnoses, {}, 
+                                     multiple: true
 
   .row.column
     .actions
@@ -70,6 +72,8 @@
   ready = ->
     $('#operation_record_additional_surgeon_ids').select2()
     $('#operation_record_procedures').select2 tags: true
+    $('#operation_record_pre_op_diagnosis').select2 tags: true
+    $('#operation_record_post_op_diagnosis').select2 tags: true
   
     $('#patient-wrap').on 'cocoon:after-insert', ->
       $('#patient-select select').removeAttr('required')

@@ -72,10 +72,12 @@ class OperationRecordsController < ApplicationController
       params.require(:operation_record)
           .permit(
               :operation_date, :patient_id, :primary_surgeon_id, 
-              :anesthesiologist_id, :case_type, :reoperation, 
-              :duration, :pre_op_diagnosis, :post_op_diagnosis,
+              :anesthesiologist_id, :case_type, :reoperation, :duration,
               { patient_attributes: [:reg_no, :birth_year, :gender] },
-              { additional_surgeon_ids: [] }, { procedures: [] }
+              { additional_surgeon_ids: [] }, 
+              { procedures: [] }, 
+              { pre_op_diagnosis: [] }, 
+              { post_op_diagnosis: [] } 
           )
     end
 end
