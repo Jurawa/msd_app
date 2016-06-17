@@ -30,9 +30,11 @@ class OperationRecord < ActiveRecord::Base
   belongs_to :patient
   belongs_to :primary_surgeon, class_name: 'Doctor'
   belongs_to :anesthesiologist, class_name: 'Doctor'
+  has_many :complications
   has_and_belongs_to_many :additional_surgeons, class_name: 'Doctor', join_table: 'operation_records_additional_surgeons'
   
   accepts_nested_attributes_for :patient
+  accepts_nested_attributes_for :complications, allow_destroy: true
   
   validates :patient, :primary_surgeon, :anesthesiologist, 
             :operation_date, :pre_op_diagnosis, :post_op_diagnosis,

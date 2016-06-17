@@ -15,6 +15,7 @@
 @import url(https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css);
 @import 'foundation_and_overrides';
+@import 'spacing';
 
 html, body, 
 .off-canvas-wrapper, .off-canvas-wrapper-inner,
@@ -112,6 +113,11 @@ table th {
 
 .table-scroll table {
   min-width: 100%;  
+}
+
+.divider {
+  margin: 1rem 0;
+  border-bottom: 1px solid #DDDDDD;
 }
 
 

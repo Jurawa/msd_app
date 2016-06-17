@@ -32,8 +32,8 @@
       = f.select :anesthesiologist_id, Doctor.anesthesiologists.collect { |d| [d.full_name, d.id] }, 
                                        { prompt: 'Select anesthesiologist' }, required: true
     
-  .row
-    .column.medium-6
+  .row.mbs
+    .column.medium-6.mbs
       = f.label :additional_surgeon_ids, 'Additional Surgeons'
       = f.select :additional_surgeon_ids, Doctor.all.collect { |d| [d.full_name, d.id] }, {}, 
                                            multiple: true
@@ -54,7 +54,7 @@
       = f.label :duration
       = f.select :duration, OperationRecord.op_durations, { prompt: 'Select duration' }, required: true
   
-  .row
+  .row.mbs
     .column.medium-6
       = f.label :pre_op_diagnosis
       = f.select :pre_op_diagnosis, OperationRecord.existing_diagnoses, {}, 
@@ -63,10 +63,25 @@
       = f.label :post_op_diagnosis
       = f.select :post_op_diagnosis, OperationRecord.existing_diagnoses, {}, 
                                      multiple: true
+                                     
+  .row.column.mtl
+    %h4 Complications
+    .divider
+                                       
+  #complications
+    = f.fields_for :complications do |complication|
+      = render 'complication_fields', f: complication
 
   .row.column
     .actions
       = f.submit 'Save', class: 'button'
+      = link_to_add_association 'Add New Complication', f, :complications, class: 'button warning float-right'
+
+-# Classification of surgical complications modal
+#complication-classification-modal.reveal.large{ data: { reveal: true} }
+  %button.close-button{ data: { close: true } }
+    %span &times;
+  = image_tag 'complication_error_grades.png'
 
 :coffeescript
   ready = ->

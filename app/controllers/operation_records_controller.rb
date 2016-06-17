@@ -73,11 +73,17 @@ class OperationRecordsController < ApplicationController
           .permit(
               :operation_date, :patient_id, :primary_surgeon_id, 
               :anesthesiologist_id, :case_type, :reoperation, :duration,
-              { patient_attributes: [:reg_no, :birth_year, :gender] },
-              { additional_surgeon_ids: [] }, 
-              { procedures: [] }, 
-              { pre_op_diagnosis: [] }, 
-              { post_op_diagnosis: [] } 
+              patient_attributes: 
+                  [:reg_no, :birth_year, :gender],
+              complications_attributes: 
+                  [:id, :_destroy, :preventable, :death, 
+                   :death_preventable, :wound_infection, 
+                   :anesthesia_related, :description, 
+                   :error_type, :error_grade],
+              additional_surgeon_ids: [], 
+              procedures: [], 
+              pre_op_diagnosis: [], 
+              post_op_diagnosis: [],
           )
     end
 end
