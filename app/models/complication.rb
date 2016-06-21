@@ -10,7 +10,7 @@
 #  preventable         :boolean
 #  death_preventable   :boolean
 #  anesthesia_related  :boolean
-#  error_type          :string
+#  error_type          :string           is an Array
 #  error_grade         :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -26,7 +26,7 @@
 
 class Complication < ActiveRecord::Base
   
-  ErrorTypes = ['Technical', 'Judgement', 'Systems', 'Knowledge Deficit']
+  ErrorTypes = ['Technical', 'Judgement', 'Systems', 'Knowledge Deficit', 'Other (explain in description)']
   ErrorGrades = %w(I II IIIa IIIb IVa IVb V)
   ErrorGradesWithSuffix = ErrorGrades.map { |g| [g, "#{g}-d"] }.flatten
   

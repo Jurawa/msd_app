@@ -26,8 +26,10 @@
       .row
         .column.medium-6
           = f.label :error_type
-          = f.select :error_type, Complication::ErrorTypes,
-                                  { prompt: 'Select error type'}, required: true
+          = f.select :error_type, Complication::ErrorTypes, {}, 
+                                  required: true,
+                                  multiple: true, 
+                                  class: 'error-type-select'
         .column.medium-6
           = f.label :error_grade
           = f.select :error_grade, Complication::ErrorGradesWithSuffix,

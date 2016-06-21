@@ -76,10 +76,12 @@ class OperationRecordsController < ApplicationController
               patient_attributes: 
                   [:reg_no, :birth_year, :gender],
               complications_attributes: 
-                  [:id, :_destroy, :preventable, :death, 
-                   :death_preventable, :wound_infection, 
-                   :anesthesia_related, :description, 
-                   :error_type, :error_grade],
+                  [
+                      :id, :_destroy, :preventable, :death, 
+                      :death_preventable, :wound_infection, 
+                      :anesthesia_related, :description, 
+                      :error_grade, error_type: []
+                  ],
               additional_surgeon_ids: [], 
               procedures: [], 
               pre_op_diagnosis: [], 

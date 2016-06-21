@@ -68,14 +68,16 @@
     %h4 Complications
     .divider
                                        
-  #complications
+  #complications.row.column
     = f.fields_for :complications do |complication|
       = render 'complication_fields', f: complication
+    .links
+      = link_to_add_association 'Add New Complication', f, :complications, class: 'button warning float-right'
 
   .row.column
+    .divider
     .actions
-      = f.submit 'Save', class: 'button'
-      = link_to_add_association 'Add New Complication', f, :complications, class: 'button warning float-right'
+      = f.submit 'Save Operation Record', class: 'button'
 
 -# Classification of surgical complications modal
 #complication-classification-modal.reveal.large{ data: { reveal: true} }
@@ -100,6 +102,11 @@
       $('#patient-select').show()
       $('#patient-wrap a.add_fields').show()
   
+    
+    $('#complications .error-type-select').each (index, element) ->
+      $(element).select2()
+    $('#complications').on 'cocoon:after-insert', (e, addedComplication) ->
+      addedComplication.find('.error-type-select').select2()
   $(document).ready ready
   $(document).on 'page:load', ready
 
